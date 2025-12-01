@@ -32,7 +32,7 @@ All scripts were written by me, Stefano Staffa, as part of my Bachelor's thesis 
 | `gold_standards.xlsx` | Human-written reference texts for evaluation (optional) | Geberit AG (internal) |
 
 > **Note:** `ibf_data.xlsx` and `gold_standards.xlsx` are not included in the repository as these are confidential company data.
-> **Note:** The pipeline runs without these files, but results may be worse as the model won't have access to curated Insight-Benefit-Feature messaging or reference texts for evaluation.
+The pipeline runs without these files, but results may be worse as the model won't have access to curated Insight-Benefit-Feature messaging or reference texts for evaluation.
 ---
 
 ## How to Run
