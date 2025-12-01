@@ -824,10 +824,11 @@ if __name__ == "__main__":
     CONFIG["OPENAI_MODEL"] = "gpt-4o-mini"
     CONFIG["GEMINI_MODEL"] = "gemini-2.0-flash"
 
-    CONFIG["RAW_EXPORT_PATH"] = "pipeline/export_test4.xlsx"
-    CONFIG["GOLD_PATH"] = ""
+    CONFIG["RAW_EXPORT_PATH"] = "product_data_with_reference.xlsx" # or product_data_without_reference.xlsx
+    CONFIG["GOLD_PATH"] = "gold_standards.xlsx"
     CONFIG["OUTPUT_PATH"] = f"results_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.xlsx"
     CONFIG["PROMPT_LOG_DIR"] = "prompt_logs"
-    CONFIG["IBF_PATH"] = "pipeline/ibf_data2.xlsx"
+    CONFIG["IBF_PATH"] = "ibf_data.xlsx"
 
     asyncio.run(run_pipeline_async(CONFIG))
+
