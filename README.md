@@ -63,17 +63,17 @@ python benchmark_pipeline.py
 
 This script automatically:
 
-1. **Loads and preprocesses data** — Extracts PIM attributes, merges IBF descriptors by product type/brand
-2. **Generates marketing texts** — Uses GPT-4o-mini and/or Gemini 2.0 Flash with configurable prompts
+1. **Loads and preprocesses data** - Extracts PIM attributes, merges IBF descriptors by product type/brand
+2. **Generates marketing texts** - Uses GPT-4o-mini and/or Gemini 2.0 Flash with configurable prompts
 3. **Evaluates outputs** using a hybrid framework:
    - **Semantic similarity** (SBERT embeddings)
    - **Rule-based validation** (character limits: 450–600 chars)
-   - **LLM-as-judge scoring** (relevance, generalization, overall quality)
-   - **Hallucination detection** (factual grounding check)
+   - **LLM-as-judge scoring** (relevance, generalization, overall quality with GPT-4o-mini)
+   - **Hallucination detection** (factual grounding check with GPT-4o-mini)
    - **Feature coverage & attribute alignment** (semantic matching)
-4. **Computes composite scores** — Weighted combination: 50% judge + 25% attribute alignment + 10% feature coverage + 15% hallucination
-5. **Optimizes prompts** — Iterative batch-based refinement targeting detected issues
-6. **Analyzes rejections** — Categorizes failure patterns (too short, hallucination, off-topic, etc.)
+4. **Computes composite scores** - Weighted combination: 50% judge + 25% attribute alignment + 10% feature coverage + 15% hallucination
+5. **Optimizes prompts** - Iterative batch-based refinement targeting detected issues
+6. **Analyzes rejections** - Categorizes failure patterns (too short, hallucination, off-topic, etc.)
 
 ---
 
@@ -95,9 +95,9 @@ CONFIG["OPTIMIZE"] = True
 CONFIG["OPT_ITERATIONS"] = 4
 CONFIG["OPT_THRESHOLD"] = 8.5
 
-CONFIG["RAW_EXPORT_PATH"] = "pipeline/export_test.xlsx"
-CONFIG["IBF_PATH"] = "pipeline/ibf_data.xlsx"
-CONFIG["GOLD_PATH"] = ""  # Optional
+CONFIG["RAW_EXPORT_PATH"] = "product_data_with_reference.xlsx" or "product_data_with_reference.xlsx"
+CONFIG["IBF_PATH"] = "ibf_data.xlsx"
+CONFIG["GOLD_PATH"] = "gold_standards.xlsx"  # Optional
 
 ```
 
@@ -127,8 +127,8 @@ Results are saved to timestamped Excel files:
 | `prompt_logs/` | Prompt evolution across optimization iterations |
 
 The Excel output contains two sheets:
-- **results** — Individual product scores (judge, relevance, hallucination, composite, etc.)
-- **aggregate** — Aggregated metrics by iteration, model, and prompt
+- **results** - Individual product scores (judge, relevance, hallucination, composite, etc.)
+- **aggregate** - Aggregated metrics by iteration, model, and prompt
 
 ---
 
