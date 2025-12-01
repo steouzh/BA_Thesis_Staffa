@@ -1,8 +1,9 @@
-# Automated Marketing Text Generation Pipeline
+# Bachelor Thesis Staffa: Automated Generation of Unique Marketing Texts Using LLMs
 
-This GitHub repository contains all code used in my Bachelor's Thesis at the University of Zurich (UZH). The project develops an automated pipeline for generating marketing product descriptions from structured PIM (Product Information Management) data and semi-structured IBF (Insight-Benefit-Feature) descriptors using large language models.
+This GitHub repository contains all code used in my Bachelor's Thesis.
+he project develops an automated pipeline for generating marketing texts from structured PIM (Product Information Management) data and semi-structured IBF (Insight-Benefit-Feature) descriptors using large language models.
 
-All scripts were written by me, Stefano [Last Name], as part of my Bachelor's thesis in [Your Program].
+All scripts were written by me, Stefano Staffa, as part of my Bachelor's thesis in Computational Linguistics.
 
 ---
 
@@ -14,22 +15,22 @@ All scripts were written by me, Stefano [Last Name], as part of my Bachelor's th
 | `benchmark_core.py` | Core utilities: rate limiting, configuration, JSON parsing, quality scoring, rejection analysis |
 | `benchmark_data.py` | Data loading and preprocessing for PIM data, IBF descriptors, and gold standards |
 | `benchmark_llm_calls.py` | Async LLM API calls for generation, judging, hallucination detection, and prompt optimization |
-| `evaluation_optimized2.py` | Evaluation framework: semantic similarity, feature coverage, attribute alignment |
-| `prompts_copy.py` | All prompt templates (generation, judge, hallucination, optimizer) |
-| `editable_section.py` | Editable prompt sections used during optimization iterations |
+| `benchmark_evaluation.py` | Evaluation framework: semantic similarity, feature coverage, attribute alignment |
+| `prompts.py` | All prompt templates (generation, judge, hallucination, optimizer) |
+| `editable_section.py` | Editable prompt sections for the generation prompt used during optimization iterations |
 
 ---
 
 ## Data Requirements
 
-To run the code, the following data is required (not included due to confidentiality):
-
 | File | Description | Source |
 |------|-------------|--------|
 | `export_test.xlsx` | Product data export with PIM attributes | Geberit AG (internal) |
 | `ibf_data.xlsx` | IBF descriptors (Insight-Benefit-Feature) | Geberit AG (internal) |
-| `gold_standards/` | Human-written reference texts for evaluation (optional) | Geberit AG (internal) |
+| `gold_standards` | Human-written reference texts for evaluation (optional) | Geberit AG (internal) |
 
+`ibf_data.xlsx` and `gold_standards.xlsx` are not included as these are confidential company data.
+The pipeline runs without these files, but results may be worse as the model won't have access to curated Insight-Benefit-Feature messaging or reference texts for evaluation.
 ---
 
 ## How to Run
@@ -88,14 +89,13 @@ CONFIG["MIN_CHARS"] = 450
 CONFIG["MAX_CHARS"] = 600
 
 CONFIG["OPTIMIZE"] = True
-CONFIG["OPT_ITERATIONS"] = 2
+CONFIG["OPT_ITERATIONS"] = 4
 CONFIG["OPT_THRESHOLD"] = 8.5
 
 CONFIG["RAW_EXPORT_PATH"] = "pipeline/export_test.xlsx"
 CONFIG["IBF_PATH"] = "pipeline/ibf_data.xlsx"
 CONFIG["GOLD_PATH"] = ""  # Optional
 
-CONFIG["DRY_RUN"] = False  # Set True for testing without API calls
 ```
 
 Additional settings in `benchmark_core.py`:
@@ -164,11 +164,6 @@ Core libraries:
 
 ---
 
-## License
-
-[Your license here]
-
----
 
 ## Acknowledgments
 
