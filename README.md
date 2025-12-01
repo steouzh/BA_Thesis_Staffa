@@ -18,6 +18,7 @@ All scripts were written by me, Stefano Staffa, as part of my Bachelor's thesis 
 | `benchmark_evaluation.py` | Evaluation framework: semantic similarity, feature coverage, attribute alignment |
 | `prompts.py` | All prompt templates (generation, judge, hallucination, optimizer) |
 | `editable_section.py` | Editable prompt sections for the generation prompt used during optimization iterations |
+| `plots.py` | A jupyter notebook to plot the graphs for visualisation |
 
 ---
 
@@ -25,11 +26,12 @@ All scripts were written by me, Stefano Staffa, as part of my Bachelor's thesis 
 
 | File | Description | Source |
 |------|-------------|--------|
-| `export_test.xlsx` | Product data export with PIM attributes | Geberit AG (internal) |
+| `product_data_with_reference.xlsx` | Product data export with PIM attributes, these already have human written marketing text in gold_standards | Geberit AG (internal) |
+| `product_data_without_reference.xlsx` | Product data export with PIM attributes, these have no marketing texts | Geberit AG (internal) |
 | `ibf_data.xlsx` | IBF descriptors (Insight-Benefit-Feature) | Geberit AG (internal) |
-| `gold_standards` | Human-written reference texts for evaluation (optional) | Geberit AG (internal) |
+| `gold_standards.xlsx` | Human-written reference texts for evaluation (optional) | Geberit AG (internal) |
 
-`ibf_data.xlsx` and `gold_standards.xlsx` are not included as these are confidential company data.
+`ibf_data.xlsx` and `gold_standards.xlsx` are not included in the repository as these are confidential company data.
 The pipeline runs without these files, but results may be worse as the model won't have access to curated Insight-Benefit-Feature messaging or reference texts for evaluation.
 ---
 
@@ -134,12 +136,12 @@ The Excel output contains two sheets:
 | Metric | Description | Weight |
 |--------|-------------|--------|
 | `judge_score` | LLM-as-judge overall quality (1–10) | 50% |
-| `relevance_score` | Product-specific relevance (1–5) | — |
-| `generalization_score` | Appropriate generalization level (1–5) | — |
+| `relevance_score` | Product-specific relevance (1–5) | - |
+| `generalization_score` | Appropriate generalization level (1–5) | - |
 | `hallucination_score` | Factual accuracy (1–10, higher = better) | 15% |
 | `semantic_attribute_alignment` | Embedding similarity to product attributes | 25% |
 | `semantic_feature_coverage` | Coverage of input features in output | 10% |
-| `in_range` | Character length within 450–600 | Gate |
+| `in_range` | Character length within 450–600 | - |
 
 ---
 
@@ -148,7 +150,7 @@ The Excel output contains two sheets:
 | Model | Length Compliance | Stakeholder Acceptance | Zero Hallucinations |
 |-------|-------------------|------------------------|---------------------|
 | GPT-4o-mini | 76–82% | 80% | ✓ |
-| Gemini 2.0 Flash | 12–48% | — | ✓ |
+| Gemini 2.0 Flash | 12–48% | - | ✓ |
 
 ---
 
@@ -161,12 +163,3 @@ Core libraries:
 - `pandas` — Data manipulation
 - `tenacity` — Retry logic
 - `python-dotenv` — Environment variables
-
----
-
-
-## Acknowledgments
-
-- Geberit AG for providing product data and domain expertise
-- [Supervisor name] for thesis supervision
-- University of Zurich, [Department]
