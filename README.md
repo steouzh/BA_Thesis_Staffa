@@ -163,8 +163,8 @@ The `plots.ipynb` notebook generates the figures used in the thesis:
 
 | Model | Length Compliance | Stakeholder Acceptance | Zero Hallucinations |
 |-------|-------------------|------------------------|---------------------|
-| GPT-4o-mini | 76–82% | 80% | ✓ |
-| Gemini 2.0 Flash | 12–48% | - | ✓ |
+| GPT-4o-mini | 76-82% | 80% | ✓ |
+| Gemini 2.0 Flash | 12-48% | - | ✓ |
 
 ---
 
